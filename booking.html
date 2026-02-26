@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="site-title">Book Now - Serenity Spa</title>
+    
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💆</text></svg>">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <a class="nav-logo" href="index.html" id="site-logo">Serenity<span>Spa</span></a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#escorts">Companions</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="index.html#reviews">Reviews</a></li>
+        <li><a href="certification.html">Certification</a></li>
+        <li><a href="booking.html">Book Now</a></li>
+    </ul>
+    <div class="nav-right">
+        <div class="nav-phone" id="nav-phone-display"></div>
+        <button class="hamburger" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" onclick="toggleMobileMenu()">×</button>
+    <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+    <a href="index.html#escorts" onclick="toggleMobileMenu()">Companions</a>
+    <a href="index.html#services" onclick="toggleMobileMenu()">Services</a>
+    <a href="index.html#gallery" onclick="toggleMobileMenu()">Gallery</a>
+    <a href="certification.html" onclick="toggleMobileMenu()">Certification</a>
+    <a href="booking.html" onclick="toggleMobileMenu()">Book Now</a>
+</div>
+
+<!-- BOOKING PAGE -->
+<div class="page active" id="page-booking">
+    <div class="contact-page">
+        <div class="contact-hero">
+            <div>
+                <p class="section-label" style="color:var(--gold-light);">Reach Out</p>
+                <h1>Book a<br><em style="font-style:italic;color:var(--gold-light);">Session</em></h1>
+                <p id="booking-intro-text">Reach out directly or fill in the booking form — we respond quickly!</p>
+                <div class="contact-channels" id="contact-channels-list"></div>
+            </div>
+            <div class="booking-form-wrap">
+                <h3>Book a Session</h3>
+                <form id="booking-form" onsubmit="submitBooking(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" id="bf-fname" required placeholder="John">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name *</label>
+                            <input type="text" id="bf-lname" required placeholder="Smith">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="bf-phone" required placeholder="+1 (000) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" id="bf-email" required placeholder="john@email.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Companion (Optional)</label>
+                        <select id="bf-escort">
+                            <option value="">Any companion</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Requested</label>
+                        <select id="bf-service">
+                            <option value="">Select a service…</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Preferred Date</label>
+                            <input type="date" id="bf-date">
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Time</label>
+                            <input type="time" id="bf-time">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="bf-message" placeholder="Any additional requests or questions…"></textarea>
+                    </div>
+                    <button type="submit" class="btn" id="submit-btn" style="width:100%;text-align:center;">Submit ⟶</button>
+                    <div class="form-error-box" id="form-error"></div>
+                    <div class="form-success" id="form-success">
+                        <p style="color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:0.5rem;">Thank you!</p>
+                        <p style="font-size:0.85rem;color:var(--muted);">Your booking has been received. We'll be in touch shortly.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <span id="footer-copy">© 2025 Serenity Spa — All Rights Reserved</span>
+    <div style="display:flex;gap:2rem;">
+        <a href="certification.html">Certification</a>
+        <a href="booking.html">Book Now</a>
+        <a onclick="openAdmin()">Admin</a>
+    </div>
+</footer>
+
+<!-- CHAT -->
+<button id="chat-toggle" onclick="toggleChat()" title="Chat with us">💬</button>
+<div id="chat-window">
+    <div class="chat-header">
+        <div class="chat-header-info">
+            <div class="chat-avatar-ph">✨</div>
+            <div>
+                <div class="chat-name" id="chat-bot-name">Serenity Assistant</div>
+                <div class="chat-status">Online now</div>
+            </div>
+        </div>
+        <button class="chat-close" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-quick-btns" id="chat-quick-btns"></div>
+    <div class="chat-input-row">
+        <input class="chat-input" id="chat-input" placeholder="Type a message…">
+        <button class="chat-send" onclick="sendChat()">➤</button>
+    </div>
+</div>
+
+<!-- ADMIN TOGGLE -->
+<button id="admin-toggle-btn" onclick="openAdmin()">⚙ Admin</button>
+
+<!-- ADMIN OVERLAY -->
+<div id="admin-overlay" onclick="handleAdminOverlay(event)">
+    <div id="admin-panel">
+        <div class="adm-header">
+            <h2>Admin Dashboard</h2>
+            <div style="display:flex;gap:1rem;align-items:center;">
+                <button class="adm-logout-btn" id="adm-logout-btn" onclick="adminLogout()" style="display:none;">Logout</button>
+                <button class="adm-close" onclick="closeAdmin()">×</button>
+            </div>
+        </div>
+        <div id="adm-content"></div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/email.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/admin.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) {
+        chatInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') sendChat();
+        });
+    }
+});
+</script>
+</body>
+</html>

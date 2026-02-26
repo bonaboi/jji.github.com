@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="site-title">Serenity Spa – Massage & Wellness</title>
+    
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💆</text></svg>">
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <a class="nav-logo" href="index.html" id="site-logo">Serenity<span>Spa</span></a>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#escorts">Companions</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="index.html#reviews">Reviews</a></li>
+        <li><a href="certification.html">Certification</a></li>
+        <li><a href="booking.html">Book Now</a></li>
+    </ul>
+    <div class="nav-right">
+        <div class="nav-phone" id="nav-phone-display"></div>
+        <button class="hamburger" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-close" onclick="toggleMobileMenu()">×</button>
+    <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+    <a href="index.html#escorts" onclick="toggleMobileMenu()">Companions</a>
+    <a href="index.html#services" onclick="toggleMobileMenu()">Services</a>
+    <a href="index.html#gallery" onclick="toggleMobileMenu()">Gallery</a>
+    <a href="certification.html" onclick="toggleMobileMenu()">Certification</a>
+    <a href="booking.html" onclick="toggleMobileMenu()">Book Now</a>
+</div>
+
+<!-- HOME PAGE CONTENT -->
+<div class="page active" id="page-home">
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div class="hero-text">
+            <p class="hero-eyebrow" id="hero-eyebrow-text">Luxury Wellness Studio</p>
+            <h1 id="hero-headline">Calm your mind,<br><em>refresh</em> your spirit,<br>awaken your senses</h1>
+            <p id="hero-subtext">Maintaining your health, happiness and inner peace isn't a one-size-fits-all solution — but it's a lot easier with the right self-care toolkit.</p>
+            <a href="booking.html" class="btn">Book a Session →</a>
+        </div>
+        <div class="hero-image">
+            <img id="img-hero" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=900&q=80" alt="Hero" onerror="if(!this.src.includes('placeholder')) this.src='https://via.placeholder.com/900x600?text=Spa'">
+        </div>
+    </section>
+
+    <!-- OPTIONS SECTION -->
+    <div class="options-section">
+        <p class="section-label">How It Works</p>
+        <h2>A Spectacular Experience</h2>
+        <div class="options-grid">
+            <div class="option-card">
+                <h3>Incall</h3>
+                <p id="incall-text">A fully equipped private studio with all session types — massage chairs, tables, and more.</p>
+            </div>
+            <div class="option-card">
+                <h3>Outcall</h3>
+                <p id="outcall-text">We come to you with all necessary essentials, early so we can enjoy a full relaxing session at your preferred location.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMPANIONS SECTION -->
+    <section class="section escorts-section" id="escorts">
+        <p class="section-label">Our Companions</p>
+        <h2>Meet the Team</h2>
+        <div class="escorts-grid" id="escorts-grid"></div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section" id="services" style="background:var(--cream)">
+        <p class="section-label">What We Offer</p>
+        <h2>Our Services</h2>
+        <p style="color:var(--muted);max-width:600px;line-height:1.8;" id="services-intro-text">We offer a variety of massage and wellness options tailored to your needs.</p>
+        <div class="services-grid" id="services-grid"></div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="section" id="gallery" style="background:var(--bg2)">
+        <p class="section-label">Our Space</p>
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img id="img-g1" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80" alt="" onclick="openLightbox(this.src)" onerror="if(!this.src.includes('placeholder')) this.src='https://via.placeholder.com/800x600?text=Gallery'"></div>
+            <div class="gallery-item"><img id="img-g2" src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80" alt="" onclick="openLightbox(this.src)" onerror="if(!this.src.includes('placeholder')) this.src='https://via.placeholder.com/600x400?text=Gallery'"></div>
+            <div class="gallery-item"><img id="img-g3" src="https://images.unsplash.com/photo-1591343395082-e120087004b4?w=600&q=80" alt="" onclick="openLightbox(this.src)" onerror="if(!this.src.includes('placeholder')) this.src='https://via.placeholder.com/600x400?text=Gallery'"></div>
+            <div class="gallery-item"><img id="img-g4" src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80" alt="" onclick="openLightbox(this.src)" onerror="if(!this.src.includes('placeholder')) this.src='https://via.placeholder.com/600x400?text=Gallery'"></div>
+            <div class="gallery-item"><img id="img-g5" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80" alt="" onclick="openLightbox(this.src)" onerror="if(!this.src.includes('placeholder')) this.src='https://via.placeholder.com/600x400?text=Gallery'"></div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="section" id="reviews" style="background:var(--cream)">
+        <p class="section-label">Testimonials</p>
+        <h2>What Clients Say</h2>
+        <div class="reviews-grid" id="reviews-grid"></div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section style="background:var(--dark);padding:5rem 6rem;text-align:center;">
+        <p class="section-label">Get in Touch</p>
+        <h2 style="color:var(--cream);" id="cta-headline">Ready for an unforgettable experience?</h2>
+        <p style="color:rgba(249,245,239,0.55);max-width:500px;margin:1rem auto 2.5rem;line-height:1.8;" id="cta-subtext">Professional, discreet, and tailored entirely to you.</p>
+        <a href="booking.html" class="btn btn-gold">Book Your Session →</a>
+    </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <span id="footer-copy">© 2025 Serenity Spa — All Rights Reserved</span>
+    <div style="display:flex;gap:2rem;">
+        <a href="certification.html">Certification</a>
+        <a href="booking.html">Book Now</a>
+        <a onclick="openAdmin()">Admin</a>
+    </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+    <button id="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- CHAT -->
+<button id="chat-toggle" onclick="toggleChat()" title="Chat with us">💬</button>
+<div id="chat-window">
+    <div class="chat-header">
+        <div class="chat-header-info">
+            <div class="chat-avatar-ph">✨</div>
+            <div>
+                <div class="chat-name" id="chat-bot-name">Serenity Assistant</div>
+                <div class="chat-status">Online now</div>
+            </div>
+        </div>
+        <button class="chat-close" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-quick-btns" id="chat-quick-btns"></div>
+    <div class="chat-input-row">
+        <input class="chat-input" id="chat-input" placeholder="Type a message…">
+        <button class="chat-send" onclick="sendChat()">➤</button>
+    </div>
+</div>
+
+<!-- ADMIN TOGGLE -->
+<button id="admin-toggle-btn" onclick="openAdmin()">⚙ Admin</button>
+
+<!-- ADMIN OVERLAY -->
+<div id="admin-overlay" onclick="handleAdminOverlay(event)">
+    <div id="admin-panel">
+        <div class="adm-header">
+            <h2>Admin Dashboard</h2>
+            <div style="display:flex;gap:1rem;align-items:center;">
+                <button class="adm-logout-btn" id="adm-logout-btn" onclick="adminLogout()" style="display:none;">Logout</button>
+                <button class="adm-close" onclick="closeAdmin()">×</button>
+            </div>
+        </div>
+        <div id="adm-content"></div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/email.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/admin.js"></script>
+
+<script>
+// Add enter key handler for chat
+document.addEventListener('DOMContentLoaded', function() {
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) {
+        chatInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') sendChat();
+        });
+    }
+});
+</script>
+</body>
+</html>
